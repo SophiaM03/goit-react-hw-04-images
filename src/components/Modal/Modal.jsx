@@ -1,22 +1,19 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Overlay, ModalContainer } from './Modal.styled';
 
 export default function Modal({ onClose, children }) {
-  const handleKeyDown = useCallback(
-    e => {
+  useEffect(() => {
+    const handleKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
       }
-    },
-    [onClose]
-  );
-  useEffect(() => {
+    };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose, handleKeyDown]);
+  }, [onClose]);
 
   const handleBackDropClick = event => {
     if (event.target === event.currentTarget) {

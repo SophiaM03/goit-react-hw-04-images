@@ -27,7 +27,6 @@ export function App() {
             setIsEmpty(true);
             return;
           }
-          setIsEmpty(false);
 
           setImages(prevHits => [...prevHits, ...hits]);
           setShowBtn(pageNumber < Math.ceil(totalHits / 12));
@@ -53,6 +52,8 @@ export function App() {
     setValue(value);
     setPageNumber(1);
     setImages([]);
+    setIsEmpty(false);
+    setError(null);
   };
   const loadMore = () => {
     setPageNumber(pageNumber => pageNumber + 1);
